@@ -82,8 +82,8 @@ func (a *AuthManager) ClearAuthentication(w http.ResponseWriter, req *http.Reque
 	session.Values = nil
 	session = nil
 	session.Options.MaxAge = -1
-	session = sessions.NewSession(a.Store, a.sessionName)
 	session.Save(req, w)
+	session = sessions.NewSession(a.Store, a.sessionName) // make sure to create a new session
 }
 
 func (a *AuthManager) isAuthRequired(req *http.Request) bool {
