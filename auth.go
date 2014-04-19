@@ -81,6 +81,7 @@ func (a *AuthManager) ClearAuthentication(w http.ResponseWriter, req *http.Reque
 	session.ID = ""
 	session.Values = nil
 	session = nil
+	session.Options.MaxAge = -1
 	session = sessions.NewSession(a.Store, a.sessionName)
 	session.Save(req, w)
 }
