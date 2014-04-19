@@ -56,7 +56,7 @@ func (a *AuthManager) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 			a.AccessDeniedHanlder.ServeHTTP(w, req)
 			return
 		}
-		w.WriteHeader(http.StatusUnauthorized)
+		http.Redirect(w, req, "/", http.StatusFound)
 	}
 	a.Router.ServeHTTP(w, req)
 }
